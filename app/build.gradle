@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "id.chirikualii.base_clean_arch_example"
-        minSdk 21
+        minSdk 23
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -20,6 +20,10 @@ android {
     }
 
     buildTypes {
+
+        buildTypes.each {
+            it.buildConfigField("String", "BASE_URL", BASE_URL)
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -71,7 +75,7 @@ ext {
 
     shimmer_version = "0.5.0"
 
-    fancy_toast_version = "0.1.8"
+    fancy_toast_version = "2.0.1"
 
     firebase_version = "28.2.0"
 
@@ -83,6 +87,8 @@ ext {
     view_pager_indicator_version = "1.2.1"
     nav_version = "2.3.5"
     youtube_player_version = "10.0.5"
+
+    data_store_version = "1.0.0"
 }
 
 dependencies {
@@ -121,11 +127,7 @@ dependencies {
     //Retrofit Gson
     implementation "com.squareup.retrofit2:retrofit:$retrofit2_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit2_version"
-    implementation "com.squareup.retrofit2:adapter-rxjava3:$rxjava2_adapter_retorfit2_version"
 
-    //RxJava
-    implementation "io.reactivex.rxjava3:rxjava:$rxjava2_version"
-    implementation "io.reactivex.rxjava3:rxandroid:$rxjava2_rxandroid_version"
 
     // Lifecycle Components
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
@@ -141,11 +143,14 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_verion"
     kapt "androidx.room:room-compiler:$room_verion"
 
+    //DataStore
+    implementation("androidx.datastore:datastore-preferences:$data_store_version")
+
     //Lottie
     implementation "com.airbnb.android:lottie:$lottie_version"
 
     //FancyToast
-    implementation "com.github.Shashank02051997:FancyToast-Android:$fancy_toast_version"
+    //implementation "com.github.Shashank02051997:FancyToast-Android:$fancy_toast_version"
 
     implementation "androidx.security:security-crypto-ktx:1.1.0-alpha03"
 

@@ -1,9 +1,12 @@
 package id.chirikualii.base_clean_arch_example.utils.extensions
 
-import com.google.gson.Gson
-import okhttp3.ResponseBody
+import retrofit2.Response
 
-//fun ResponseBody.errorResponse(): DefaultResponse {
-//    val gson = Gson()
-//    return gson.fromJson(charStream(), DefaultResponse::class.java)
-//}
+
+fun <T> Response<T>.isTotallySuccess(): Boolean {
+    return this.isSuccessful && this.body() !=null
+}
+
+fun <T> Response<T>.hasEmptyBody(): Boolean {
+    return this.isSuccessful && this.body() == null
+}
